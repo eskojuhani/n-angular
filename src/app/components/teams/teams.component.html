@@ -1,0 +1,56 @@
+  <div *ngIf="teams" class="entity-section entity-section-light">
+    <div class="container">
+      <div *ngIf="teams" class="row row-centered">
+        <div class="col-md-12">
+          <div *ngFor="let item of (teams | async)" class="event-box">
+            <a href="/teams/{{item.id}}">
+            <span [innerHtml]="item.name"></span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="entity-section entity-section-light">
+    <div class="container">
+      <div *ngIf="teamId" class="row row-centered">
+        <div class="col-md-12">
+          <span [innerHtml]="teamId"></span>
+          <span style="padding-left:1em;">{{getDivisionAndConverence(teamId)}}</span>
+        </div>
+        <div class="row row-centered">
+          <div class="col-md-12">
+            <div *ngIf="nextScheduledGames" class="entity-list">
+                <div *ngFor="let item of (nextScheduledGames | async)" class="entity-box">
+                  <a href="/dategames/{{item.gameDate}}"><span [innerHtml]="item.gameDate" class="entity-item"></span></a>
+                  <a href="/teams/{{item.oppoId}}"><span class="opponent-name" [innerHtml]="item.oppoTeamName" class="entity-item"></span></a>
+                  <span [innerHtml]="item.oppoTeamDivision"class="entity-item"></span>
+                  <span [innerHtml]="item.oppoTeamConference"class="entity-item"></span>
+                  <span [innerHtml]="item.location" class="entity-item"></span>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="row row-centered">
+          <div class="col-md-12">
+            <div *ngIf="homePerformance" class="entity-list">
+                <div *ngFor="let item of (homePerformance | async)" class="entity-box"
+                    [ngClass]="item.outcome === 'W' && item.location === 'H' ? 'outcome-win location-home' :
+                      item.outcome === 'W' && item.location === 'A' ? 'outcome-win location-away' :
+                      item.location === 'H' ? 'outcome-lost location-home' : 'outcome-lost location-away'">
+                  <a href="/dategames/{{item.gameDate}}"><span [innerHtml]="item.gameDate" class="entity-item"></span></a>
+                  <a href="/teams/{{item.oppoId}}"><span class="opponent-name" [innerHtml]="item.oppo" class="entity-item"></span></a>
+                  <span class="entity-item" [ngStyle]="{'border': getStyleForDivisionAndConverence(teamId, item.oppoId, item.finalScore)}">{{getDivisionAndConverence(item.oppoId)}}</span>
+                  <span [innerHtml]="item.location" class="entity-item"></span>
+                  <span [innerHtml]="item.performance" class="entity-item"></span>
+                  <span [innerHtml]="item.gameMovingAvg3" class="entity-item"></span>
+                  <span [innerHtml]="item.gameMovingAvg10" class="entity-item"></span>
+                  <span [innerHtml]="item.finalScore" class="entity-item"></span>
+                  <span [innerHtml]="item.overtime ? 'OT' : ''" class="entity-item"></span>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

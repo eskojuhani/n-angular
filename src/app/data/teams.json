@@ -1,0 +1,161 @@
+[{
+  "teamId": "NJD",
+  "name": "New Jersey Devils",
+  "division": "Metropolitan",
+  "conference": "Eastern"
+}, {
+  "teamId": "NYI",
+  "name": "New York Islanders",
+  "division": "Metropolitan",
+  "conference": "Eastern"
+}, {
+  "teamId": "NYR",
+  "name": "New York Rangers",
+  "division": "Metropolitan",
+  "conference": "Eastern"
+}, {
+  "teamId": "PHI",
+  "name": "Philadelphia Flyers",
+  "division": "Metropolitan",
+  "conference": "Eastern"
+}, {
+  "teamId": "PIT",
+  "name": "Pittsburgh Penguins",
+  "division": "Metropolitan",
+  "conference": "Eastern"
+}, {
+  "teamId": "BOS",
+  "name": "Boston Bruins",
+  "division": "Atlantic",
+  "conference": "Eastern"
+}, {
+  "teamId": "BUF",
+  "name": "Buffalo Sabres",
+  "division": "Atlantic",
+  "conference": "Eastern"
+}, {
+  "teamId": "MTL",
+  "name": "Montréal Canadiens",
+  "division": "Atlantic",
+  "conference": "Eastern"
+}, {
+  "teamId": "OTT",
+  "name": "Ottawa Senators",
+  "division": "Atlantic",
+  "conference": "Eastern"
+}, {
+  "teamId": "TOR",
+  "name": "Toronto Maple Leafs",
+  "division": "Atlantic",
+  "conference": "Eastern"
+}, {
+  "teamId": "CAR",
+  "name": "Carolina Hurricanes",
+  "division": "Metropolitan",
+  "conference": "Eastern"
+}, {
+  "teamId": "FLA",
+  "name": "Florida Panthers",
+  "division": "Atlantic",
+  "conference": "Eastern"
+}, {
+  "teamId": "TBL",
+  "name": "Tampa Bay Lightning",
+  "division": "Atlantic",
+  "conference": "Eastern"
+}, {
+  "teamId": "WSH",
+  "name": "Washington Capitals",
+  "division": "Metropolitan",
+  "conference": "Eastern"
+}, {
+  "teamId": "CHI",
+  "name": "Chicago Blackhawks",
+  "division": "Central",
+  "conference": "Western"
+}, {
+  "teamId": "DET",
+  "name": "Detroit Red Wings",
+  "division": "Atlantic",
+  "conference": "Eastern"
+}, {
+  "teamId": "NSH",
+  "name": "Nashville Predators",
+  "division": "Central",
+  "conference": "Western"
+}, {
+  "teamId": "STL",
+  "name": "St. Louis Blues",
+  "division": "Central",
+  "conference": "Western"
+}, {
+  "teamId": "CGY",
+  "name": "Calgary Flames",
+  "division": "Pacific",
+  "conference": "Western"
+}, {
+  "teamId": "COL",
+  "name": "Colorado Avalanche",
+  "division": "Central",
+  "conference": "Western"
+}, {
+  "teamId": "EDM",
+  "name": "Edmonton Oilers",
+  "division": "Pacific",
+  "conference": "Western"
+}, {
+  "teamId": "VAN",
+  "name": "Vancouver Canucks",
+  "division": "Pacific",
+  "conference": "Western"
+}, {
+  "teamId": "ANA",
+  "name": "Anaheim Ducks",
+  "division": "Pacific",
+  "conference": "Western"
+}, {
+  "teamId": "DAL",
+  "name": "Dallas Stars",
+  "division": "Central",
+  "conference": "Western"
+}, {
+  "teamId": "LAK",
+  "name": "Los Angeles Kings",
+  "division": "Pacific",
+  "conference": "Western"
+}, {
+  "teamId": "SJS",
+  "name": "San Jose Sharks",
+  "division": "Pacific",
+  "conference": "Western"
+}, {
+  "teamId": "CBJ",
+  "name": "Columbus Blue Jackets",
+  "division": "Metropolitan",
+  "conference": "Eastern"
+}, {
+  "teamId": "MIN",
+  "name": "Minnesota Wild",
+  "division": "Central",
+  "conference": "Western"
+}, {
+  "teamId": "WPG",
+  "name": "Winnipeg Jets",
+  "division": "Central",
+  "conference": "Western"
+}, {
+  "teamId": "ARI",
+  "name": "Arizona Coyotes",
+  "division": "Central",
+  "conference": "Western"
+}, {
+  "teamId": "VGK",
+  "name": "Vegas Golden Knights",
+  "division": "Pacific",
+  "conference": "Western"
+}, {
+  "teamId": "SEA",
+  "name": "Seattle Kraken",
+  "division": "Pacific",
+  "conference": "Western"
+}]

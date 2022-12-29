@@ -1,0 +1,112 @@
+<div class="entity-section entity-section-light">
+  <div class="container">
+    <div class="row row-centered">
+      <div class="column-header">
+        <h1>NHL Momentum Stats - Angular v2.0</h1>
+      </div>
+    </div>
+    <div class="row row-centered">
+      <div class="column-header">
+        <span (click)="selectDate(-1)"><i class="fa fa-hand-o-left"></i></span>
+          {{ searchTerm }}
+        <span (click)="selectDate(1)"><i class="fa fa-hand-o-right"></i></span>
+      </div>
+    </div>
+    <div class="row row-centered">
+      <div class="col-md-12">
+        <div class="entity-box" *ngFor="let game of (scheduledGames | async) " (click)="gameSelected(game)">
+          <div class="field-date" [innerHtml]="game.gameDate | date:'yyyy-MM-dd'"></div>
+          <div class="field-name" [innerHtml]="game.homeTeamName"></div>
+          <div class="field-name" [innerHtml]="'vs'"></div>
+          <div class="field-name" [innerHtml]="game.awayTeamName"></div>
+          <div *ngIf="game.homeGameInfo">
+            <span>{{game.homeGameInfo}}</span>
+          </div>
+          <div *ngIf="game.awayGameInfo">
+            <span>{{game.awayGameInfo}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="selectedGame" class="entity-section entity-section-dark">
+  <div class="container">
+    <div class="row row-centered">
+      <app-canvas [game]="selectedGame" [home]="homePerformance" [away]="awayPerformance"></app-canvas>
+    </div>
+  </div>
+</div>
+<div *ngIf="selectedGame" class="entity-section entity-section-light">
+  <div class="container">
+    <div *ngIf="gameEvents" class="row row-centered">
+      <div class="col-md-12">
+        <div *ngFor="let item of (gameEvents | async)" class="event-box">
+          <span [ngClass]="item.eventTypeID === 'GOAL' ? 'eventType-goal' : ''" [innerHtml]="item.description"></span>
+          <span *ngIf="item.eventTypeID === 'GOAL'">
+            <span *ngIf="item.strength !== 'EVEN'">{{" " + item.strength }}</span>
+            <span>{{" " + item.homeGoals + " - " + item.awayGoals}}</span>
+            <span>{{" (" + item.homeCumPoints + " - " + item.awayCumPoints + ")"}}</span>
+            <span>{{" " + item.period + ". " + item.periodTime}}</span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="entity-section entity-section-light">
+  <div *ngIf="selectedGame" class="container">
+    <div class="row row-centered">
+      <div class="column-header">
+          Performances
+      </div>
+    </div>
+    <div class="row row-centered">
+      <div class="col-md-6">
+        <a href="/teams/{{selectedGame.homeId}}"><div [innerHtml]="selectedGame.homeTeamName"></div></a>
+      </div>
+      <div class="col-md-6">
+        <a href="/teams/{{selectedGame.awayId}}"><div [innerHtml]="selectedGame.awayTeamName"></div></a>
+      </div>
+    </div>
+    <div class="row row-centered">
+      <div class="col-md-6">
+        <div *ngIf="homePerformance" class="entity-list">
+            <div *ngFor="let item of (homePerformance | async)" class="entity-box">
+              <div [innerHtml]="item.gameDate"></div>
+              <div class="opponent-name" [innerHtml]="item.oppo"></div>
+              <div [innerHtml]="item.location"></div>
+              <div [innerHtml]="item.performance"></div>
+              <div [innerHtml]="item.gameMovingAvg3"></div>
+              <div [innerHtml]="item.gameMovingAvg10"></div>
+              <div [innerHtml]="item.outcome"></div>
+              <div [innerHtml]="item.finalScore"></div>
+            </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div *ngIf="awayPerformance" class="entity-list">
+            <div *ngFor="let item of (awayPerformance | async)" class="entity-box">
+              <div [innerHtml]="item.gameDate"></div>
+              <div class="opponent-name" [innerHtml]="item.oppo"></div>
+              <div [innerHtml]="item.location"></div>
+              <div [innerHtml]="item.performance"></div>
+              <div [innerHtml]="item.gameMovingAvg3"></div>
+              <div [innerHtml]="item.gameMovingAvg10"></div>
+              <div [innerHtml]="item.outcome"></div>
+              <div [innerHtml]="item.finalScore"></div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!--
+  {{chatMessage.username + ": " + chatMessage.message}}
+  <div *ngFor="let item of chatMessages" class="row">
+    <div *ngIf="item.username">
+      <span [innerHtml]="item.username"></span>:&nbsp;
+      <span [innerHtml]="item.message"></span>
+    </div>
+  </div>
+-->
+</div>

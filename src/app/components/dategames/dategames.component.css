@@ -1,0 +1,93 @@
+.col-md-6 {
+    float: left;
+    width: 50%;
+}
+
+.entity-section {
+    padding: 20px 10px;
+    position: relative;
+    overflow: auto;
+}
+.entity-section-light {
+    background-color: #fefefe;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 1;
+    color: black;
+    background-position: 0px;
+}
+.entity-section-dark {
+    background-color: #efefef;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 1;
+    color: black;
+    background-position: 0px;
+}
+.container {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 100%;
+    max-width: 100%;
+}
+.row-centered {
+    text-align: center;
+}
+
+.column-header {
+    color: #403e3e;
+    display: inline-block;
+    font-size: 18px;
+    font-weight: 600;
+    text-decoration: underline;
+    margin: 0;
+    text-align: center;
+    width: 100%;
+}
+.entity-box {
+    border: 1px solid #dedede;
+    font-family: "Futura-pt", Helvetica, Arial, sans-serif;
+    min-height: 100px;
+    padding: 4px 4px;
+    margin: 8px 4px;
+    overflow: hidden;
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    font-size: 14px;
+}
+.entity-box:hover {
+    border: 1px solid #33ff33;
+}
+.entity-box .field-date {
+    font-size: 12px;
+    opacity: 1;
+}
+.entity-list {
+    border: 1px solid #fefefe;
+    font-family: "Futura-pt", Helvetica, Arial, sans-serif;
+    padding: 4px 4px;
+    margin: 8px 4px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    font-size: 14px;
+}
+.eventType-goal {
+  font-weight: 800;
+}
+.opponent-name {
+  font-size: 8px;
+}
+@media (max-width: 1210px) and (min-width: 991px) {
+  .container {
+      width: 974px;
+  }
+}
+@media (max-width: 990px) {
+  .container {
+      width: 800px;
+  }
+}

@@ -1,18 +1,44 @@
-import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { Component, NgModule } from '@angular/core';
+import { HttpClientModule, HttpInterceptor, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { DateGamesComponent } from './components/dategames/dategames.component';
+import { TeamsComponent } from './components/teams/teams.component';
+import { CanvasComponent } from './components/canvas/canvas.component';
+//import { ChatService } from './services/chat.service';
+import { NHLService } from './services/nhl.service';
+import { StoreService } from './services/store.service';
+import { TokenInterceptor } from './services/token-interceptor';
+
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+
+//const config: SocketIoConfig = { url: 'https://nhl-chat.herokuapp.com/', options: { } }
+//const config: SocketIoConfig = { url: 'http://localhost:8088/', options: { } }
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CanvasComponent,
+    DateGamesComponent,
+    TeamsComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    HttpClientModule,
+    RouterModule.forRoot([
+      {path: 'teams', component: TeamsComponent},
+      {path: 'teams/:id', component: TeamsComponent},
+      {path: 'dategames', component: DateGamesComponent},
+      {path: 'dategames/:id', component: DateGamesComponent},
+      {path: '', redirectTo: '/dategames', pathMatch: 'full'},
+    ]),
+    //SocketIoModule.forRoot(config)
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+    StoreService, NHLService /*, ChatService*/],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
