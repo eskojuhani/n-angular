@@ -109,7 +109,7 @@ export class DateGamesComponent implements OnInit, OnDestroy {
       };
   }
 
-  selectDate(change) {
+  selectDate(change: any) {
     var d = new Date(this.selectedDate);
     var start = new Date(this.selectedDate);
     d.setDate(d.getDate() + change);
@@ -167,53 +167,9 @@ export class DateGamesComponent implements OnInit, OnDestroy {
       }
       this.initData();
     });
-    //this.subscription = this.chatService.chatMessage.subscribe((chatMessage) => {
-      //if (chatMessage.username) {
-        //this.chatMessage = chatMessage;
-        //this.chatMessages.push(chatMessage);
-        //console.log(chatMessage, this.chatMessages);
-      //}
-    //})
-    /*
-    this.storeService.audioPcm("http://www.music.helsinki.fi/tmt/opetus/uusmedia/esim/a2002011001-e02-128k.mp3")
-     .subscribe((event: HttpEvent<any>) => {
-       switch (event.type) {
-         case HttpEventType.Response:
-           console.log("audio pcm", event.body);
-       }
-     }),
-     err => {
-       console.log("Error occured. no audio pcm")
-     };
-     */
   }
-  /*
-  stopAudioOnServer() {
-    this.storeService.stopAudioOnServer()
-     .subscribe((event: HttpEvent<any>) => {
-       switch (event.type) {
-         case HttpEventType.Response:
-           console.log("audio pcm", event.body);
-       }
-     }),
-     err => {
-       console.log("Error occured. no audio pcm")
-     };
-  }
-  startAudioOnServer() {
-    this.storeService.playAudioOnServer("http://www.music.helsinki.fi/tmt/opetus/uusmedia/esim/a2002011001-e02-128k.mp3")
-     .subscribe((event: HttpEvent<any>) => {
-       switch (event.type) {
-         case HttpEventType.Response:
-           console.log("audio pcm", event.body);
-       }
-     }),
-     err => {
-       console.log("Error occured. no audio pcm")
-     };
-  }
-  */
-  gameSelected(game) {
+
+  gameSelected(game: any) {
     this.selectedGame = game;
     this.gameEvents = null;
     this.fetchHomePerformance(game);
@@ -233,7 +189,7 @@ export class DateGamesComponent implements OnInit, OnDestroy {
     */
   }
 
-  fetchHomePerformance(game) {
+  fetchHomePerformance(game: any) {
     var metadata = {
       "table": "vPerformanceMA",
       "where": [JSON.stringify([{ "team = ": game.homeTeamName }, { "gameDate < ": this.searchTerm }, { "gameDate > ": this.startDate }])],
@@ -260,7 +216,7 @@ export class DateGamesComponent implements OnInit, OnDestroy {
         console.log("Error occured.")
       };
   }
-  fetchAwayPerformance(game) {
+  fetchAwayPerformance(game: any) {
     var metadata = {
       "table": "vPerformanceMA",
       "where": [JSON.stringify([{ "team = ": game.awayTeamName }, { "gameDate < ": this.searchTerm }, { "gameDate > ": this.startDate }])],
@@ -287,7 +243,7 @@ export class DateGamesComponent implements OnInit, OnDestroy {
         console.log("Error occured.")
       };
   }
-  fetchGameEvents(game) {
+  fetchGameEvents(game: any) {
     var metadata = {
       "table": "vGameEventsNHL",
       "where": [JSON.stringify([{ "gamePk = ": game.gamePk }])]
