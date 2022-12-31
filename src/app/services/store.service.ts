@@ -12,7 +12,7 @@ export class StoreService {
   }
   //baseUrl = 'https://nhl-data.herokuapp.com';
   //baseUrl = 'https://esepoppa.nfshost.com/nhl';
-  baseUrl = 'http://10.31.194.140:8088';
+  baseUrl = 'http://localhost:8088';
   connect(): void {
 /*
     let eventSource = new EventSource(this.baseUrl + '/sse');
@@ -60,12 +60,14 @@ export class StoreService {
   selectAll(metadata): Observable<any> {
     var url = this.baseUrl + '/api/table';
     let headers = new HttpHeaders(metadata);
-    const req = new HttpRequest('GET', url, {
+    /*const req = new HttpRequest('GET', url, {
       reportProgress: true,
       headers: headers,
       json: true
     });
     return this.httpClient.request(req);
+    */
+    return this.httpClient.get<[]>(url, { 'headers': headers });
   }
 
   audioPcm(uri): Observable<any> {

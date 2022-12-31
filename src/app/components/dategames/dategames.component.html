@@ -14,7 +14,7 @@
     </div>
     <div class="row row-centered">
       <div class="col-md-12">
-        <div class="entity-box" *ngFor="let game of (scheduledGames | async) " (click)="gameSelected(game)">
+        <div class="entity-box" *ngFor="let game of scheduledGames " (click)="gameSelected(game)">
           <div class="field-date" [innerHtml]="game.gameDate | date:'yyyy-MM-dd'"></div>
           <div class="field-name" [innerHtml]="game.homeTeamName"></div>
           <div class="field-name" [innerHtml]="'vs'"></div>
@@ -41,7 +41,7 @@
   <div class="container">
     <div *ngIf="gameEvents" class="row row-centered">
       <div class="col-md-12">
-        <div *ngFor="let item of (gameEvents | async)" class="event-box">
+        <div *ngFor="let item of gameEvents" class="event-box">
           <span [ngClass]="item.eventTypeID === 'GOAL' ? 'eventType-goal' : ''" [innerHtml]="item.description"></span>
           <span *ngIf="item.eventTypeID === 'GOAL'">
             <span *ngIf="item.strength !== 'EVEN'">{{" " + item.strength }}</span>
@@ -72,7 +72,7 @@
     <div class="row row-centered">
       <div class="col-md-6">
         <div *ngIf="homePerformance" class="entity-list">
-            <div *ngFor="let item of (homePerformance | async)" class="entity-box">
+            <div *ngFor="let item of homePerformance" class="entity-box">
               <div [innerHtml]="item.gameDate"></div>
               <div class="opponent-name" [innerHtml]="item.oppo"></div>
               <div [innerHtml]="item.location"></div>
@@ -86,7 +86,7 @@
       </div>
       <div class="col-md-6">
         <div *ngIf="awayPerformance" class="entity-list">
-            <div *ngFor="let item of (awayPerformance | async)" class="entity-box">
+            <div *ngFor="let item of awayPerformance" class="entity-box">
               <div [innerHtml]="item.gameDate"></div>
               <div class="opponent-name" [innerHtml]="item.oppo"></div>
               <div [innerHtml]="item.location"></div>

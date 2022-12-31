@@ -8,18 +8,23 @@ import { AppComponent } from '../../app.component';
 import { NHLService } from '../../services/nhl.service';
 import { StoreService } from '../../services/store.service';
 import * as $ from 'jquery';
+import { Team } from './team';
 
 @Component({
   selector: 'app-teams',
   templateUrl: './teams.component.html',
   styleUrls: ['./teams.component.css']
 })
+
 export class TeamsComponent implements OnInit, OnDestroy {
 
-  public teams: Observable<any[]>;
-  public nextScheduledGames: Observable<any[]>;
+  //public teams: Observable<any[]>;
+  teams = new Array<Team>();
+  //public nextScheduledGames: Observable<any[]>;
+  nextScheduledGames = new Array<any>();
   public teamId;
-  public homePerformance: Observable<any[]>;
+  //public homePerformance: Observable<any[]>;
+  homePerformance = new Array<any>();
   private routeSub: Subscription;
 
   constructor(
@@ -86,11 +91,9 @@ export class TeamsComponent implements OnInit, OnDestroy {
     };
 
     this.storeService.selectAll(metadata)
-      .subscribe((event: HttpEvent<any>) => {
-        switch (event.type) {
-          case HttpEventType.Response:
-            this.teams = event.body;
-        }
+      .subscribe(response => {
+        if (response)
+          this.teams = response;
       }),
       err => {
         console.log("Error occured.")
@@ -106,11 +109,9 @@ export class TeamsComponent implements OnInit, OnDestroy {
 
 
     this.storeService.selectAll(metadata)
-      .subscribe((event: HttpEvent<any>) => {
-        switch (event.type) {
-          case HttpEventType.Response:
-            this.nextScheduledGames = event.body;
-        }
+      .subscribe(response => {
+        if (response)
+          this.nextScheduledGames = response;
       }),
       err => {
         console.log("Error occured.")
@@ -126,11 +127,9 @@ export class TeamsComponent implements OnInit, OnDestroy {
 
 
     this.storeService.selectAll(metadata)
-      .subscribe((event: HttpEvent<any>) => {
-        switch (event.type) {
-          case HttpEventType.Response:
-            this.homePerformance = event.body;
-        }
+      .subscribe(response => {
+        if (response)
+          this.homePerformance = response;
       }),
       err => {
         console.log("Error occured.")

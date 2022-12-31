@@ -20,10 +20,15 @@ export class DateGamesComponent implements OnInit, OnDestroy {
   private routeSub: Subscription;
 
   title = 'NHL Schedules';
-  public scheduledGames: Observable<any[]>;
-  public homePerformance: Observable<any[]>;
-  public awayPerformance: Observable<any[]>;
-  public gameEvents: Observable<any[]> | null;
+  //public scheduledGames: Observable<any[]>;
+  scheduledGames = new Array<any>();
+  //public homePerformance: Observable<any[]>;
+  homePerformance = new Array<any>();
+  //public awayPerformance: Observable<any[]>;
+  awayPerformance = new Array<any>();
+  //public gameEvents: Observable<any[]> | null;
+  gameEvents = new Array<any>();
+
   public selectedGame;
   public isPlayingOnServer = false;
   public selectedDate;
@@ -98,11 +103,10 @@ export class DateGamesComponent implements OnInit, OnDestroy {
     };
 
     this.storeService.selectAll(metadata)
-      .subscribe((event: HttpEvent<any>) => {
-        switch (event.type) {
-          case HttpEventType.Response:
-            this.scheduledGames = _.uniq(event.body, "gamePk");
-        }
+      .subscribe(response => {
+        console.log(response)
+        this.scheduledGames = _.uniq(response, "gamePk");
+        
       }),
       err => {
         console.log("Error occured.")
@@ -125,7 +129,7 @@ export class DateGamesComponent implements OnInit, OnDestroy {
 
   gamesOnDate() {
     this.selectedGame = null;
-
+    console.log("gamesOnDate", this.searchTerm)
     var metadata = {
       "table": "NHLGame",
       "where": [JSON.stringify([{ "gameDate = ": this.searchTerm }])],
@@ -133,11 +137,10 @@ export class DateGamesComponent implements OnInit, OnDestroy {
     };
 
     this.storeService.selectAll(metadata)
-      .subscribe((event: HttpEvent<any>) => {
-        switch (event.type) {
-          case HttpEventType.Response:
-            this.scheduledGames = event.body;
-        }
+      .subscribe(response => {
+        console.log("gamesOnDate:", response)
+        if (response)
+          this.scheduledGames = response;
       }),
       err => {
         console.log("Error occured.")
@@ -145,8 +148,8 @@ export class DateGamesComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
-    this.routeSub.unsubscribe();
+    //this.subscription.unsubscribe();
+    //this.routeSub.unsubscribe();
   }
 
   ngOnInit() {
@@ -171,7 +174,7 @@ export class DateGamesComponent implements OnInit, OnDestroy {
 
   gameSelected(game: any) {
     this.selectedGame = game;
-    this.gameEvents = null;
+    this.gameEvents = [];
     this.fetchHomePerformance(game);
     this.fetchAwayPerformance(game);
     this.fetchGameEvents(game);
@@ -196,20 +199,20 @@ export class DateGamesComponent implements OnInit, OnDestroy {
       "order": "row_num desc"
     };
 
-
+    console.log("fetchHomePerformance")
     this.storeService.selectAll(metadata)
-      .subscribe((event: HttpEvent<any>) => {
-        switch (event.type) {
-          case HttpEventType.Response:
-            this.homePerformance = event.body;
-            if (this.homePerformance) {
-              var preGame = this.homePerformance[0];
-              var days = this.daysBetween(game.gameDate, preGame.gameDate);
-              game.homeGameInfo = preGame.location + (days - 1) + preGame.outcome + ' ' + preGame.finalScore;
-            }
-            else {
-              game.homeGameInfo = "n/a";
-            }
+      .subscribe(response => {
+        console.log(response)
+        if (response) {
+          this.homePerformance = response;
+          if (this.homePerformance) {
+            var preGame = this.homePerformance[0];
+            var days = this.daysBetween(game.gameDate, preGame.gameDate);
+            game.homeGameInfo = preGame.location + (days - 1) + preGame.outcome + ' ' + preGame.finalScore;
+          }
+          else {
+            game.homeGameInfo = "n/a";
+          }
         }
       }),
       err => {
@@ -224,19 +227,18 @@ export class DateGamesComponent implements OnInit, OnDestroy {
     };
 
     this.storeService.selectAll(metadata)
-      .subscribe((event: HttpEvent<any>) => {
-        switch (event.type) {
-          case HttpEventType.Response:
-            this.gameDate = this.searchTerm;
-            this.awayPerformance = event.body;
-            if (this.awayPerformance) {
-              var preGame = this.awayPerformance[0];
-              var days = this.daysBetween(game.gameDate, preGame.gameDate);
-              game.awayGameInfo = preGame.location + (days - 1) + preGame.outcome + ' ' + preGame.finalScore;
-            }
-            else {
-              game.awayGameInfo = "n/a";
-            }
+      .subscribe(response => {
+        if (response) {
+          this.awayPerformance = response;
+          this.gameDate = this.searchTerm;
+          if (this.awayPerformance) {
+            var preGame = this.awayPerformance[0];
+            var days = this.daysBetween(game.gameDate, preGame.gameDate);
+            game.awayGameInfo = preGame.location + (days - 1) + preGame.outcome + ' ' + preGame.finalScore;
+          }
+          else {
+            game.awayGameInfo = "n/a";
+          }
         }
       }),
       err => {
@@ -250,11 +252,9 @@ export class DateGamesComponent implements OnInit, OnDestroy {
     };
 
     this.storeService.selectAll(metadata)
-      .subscribe((event: HttpEvent<any>) => {
-        switch (event.type) {
-          case HttpEventType.Response:
-            this.gameEvents = event.body;
-          //console.log(this.gameEvents)
+      .subscribe(response => {
+        if (response) {
+          this.gameEvents = response;
         }
       }),
       err => {
