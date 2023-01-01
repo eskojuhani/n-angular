@@ -10,9 +10,8 @@ export class StoreService {
   constructor(private httpClient: HttpClient) {
     this.connect();
   }
-  //baseUrl = 'https://nhl-data.herokuapp.com';
-  //baseUrl = 'https://esepoppa.nfshost.com/nhl';
-  baseUrl = 'http://localhost:8088';
+  baseUrl = 'https://n-data-rho.vercel.app';
+  //baseUrl = 'http://localhost:3000';
   connect(): void {
 /*
     let eventSource = new EventSource(this.baseUrl + '/sse');
