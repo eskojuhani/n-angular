@@ -199,7 +199,6 @@ export class DateGamesComponent implements OnInit, OnDestroy {
       "order": "row_num desc"
     };
 
-    console.log("fetchHomePerformance")
     this.storeService.selectAll(metadata)
       .subscribe(response => {
         console.log(response)
