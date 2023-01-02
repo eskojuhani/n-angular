@@ -195,7 +195,7 @@ export class DateGamesComponent implements OnInit, OnDestroy {
   fetchHomePerformance(game: any) {
     var metadata = {
       "table": "vPerformanceMA",
-      "where": [JSON.stringify([{ "team = ": game.homeTeamName }, { "gameDate < ": this.searchTerm }, { "gameDate > ": this.startDate }])],
+      "where": [JSON.stringify([{ "team = ": encodeURIComponent(game.homeTeamName) }, { "gameDate < ": this.searchTerm }, { "gameDate > ": this.startDate }])],
       "order": "row_num desc"
     };
 
@@ -222,7 +222,7 @@ export class DateGamesComponent implements OnInit, OnDestroy {
   fetchAwayPerformance(game: any) {
     var metadata = {
       "table": "vPerformanceMA",
-      "where": [JSON.stringify([{ "team = ": game.awayTeamName }, { "gameDate < ": this.searchTerm }, { "gameDate > ": this.startDate }])],
+      "where": [JSON.stringify([{ "team = ": encodeURIComponent(game.awayTeamName) }, { "gameDate < ": this.searchTerm }, { "gameDate > ": this.startDate }])],
       "order": "row_num desc"
     };
 
