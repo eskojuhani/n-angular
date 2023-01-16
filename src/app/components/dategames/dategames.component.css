@@ -87,8 +87,8 @@
 .outcome-win {
     background-color: #b9dca0;
 }
-.outcome {
-    background-color: initial;
+.outcome-ot {
+    background-color: lightcyan;
 }
 
 @media (max-width: 1210px) and (min-width: 991px) {

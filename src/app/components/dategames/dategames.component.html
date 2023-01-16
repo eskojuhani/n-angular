@@ -83,7 +83,8 @@
               <div [innerHtml]="item.gameMovingAvg10"></div>
               <div [innerHtml]="item.outcome"
               [ngClass]="item.outcome === 'W'  ? 'outcome-win' : 'outcome-lost'"></div>
-              <div [innerHtml]="item.finalScore"></div>
+              <div [innerHtml]="item.finalScore"
+              [ngClass]="item.overtime === 1  ? 'outcome-ot' : ''"></div>
             </div>
         </div>
       </div>
@@ -100,7 +101,8 @@
               <div [innerHtml]="item.gameMovingAvg10"></div>
               <div [innerHtml]="item.outcome"
               [ngClass]="item.outcome === 'W'  ? 'outcome-win' : 'outcome-lost'"></div>
-              <div [innerHtml]="item.finalScore"></div>
+              <div [innerHtml]="item.finalScore"
+              [ngClass]="item.overtime === 1  ? 'outcome-ot' : ''"></div>
             </div>
         </div>
       </div>
