@@ -49,7 +49,7 @@
 .entity-box {
     border: 1px solid #dedede;
     font-family: "Futura-pt", Helvetica, Arial, sans-serif;
-    height: 20px;
+    height: 30px;
     width: 80%;
     padding: 4px 4px;
     margin: 8px 4px;
@@ -65,6 +65,10 @@
 .entity-box .field-date {
     font-size: 12px;
     opacity: 1;
+}
+.entity-box .history-row {
+  font-size: 8px;
+  padding-top: 4px;
 }
 .entity-item {
   padding-right: 1em;

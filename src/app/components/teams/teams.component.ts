@@ -9,12 +9,15 @@ import { NHLService } from '../../services/nhl.service';
 import { StoreService } from '../../services/store.service';
 import * as $ from 'jquery';
 import { Team } from './team';
+import { memo } from './memo';
 
 @Component({
   selector: 'app-teams',
   templateUrl: './teams.component.html',
   styleUrls: ['./teams.component.css']
 })
+
+
 
 export class TeamsComponent implements OnInit, OnDestroy {
 
@@ -26,6 +29,9 @@ export class TeamsComponent implements OnInit, OnDestroy {
   //public homePerformance: Observable<any[]>;
   homePerformance = new Array<any>();
   private routeSub: Subscription;
+  count = 0;
+  
+  plusOne = memo((count: number) => count + 1);
 
   constructor(
     private app: AppComponent,
@@ -117,6 +123,7 @@ export class TeamsComponent implements OnInit, OnDestroy {
         console.log("Error occured.")
       };
   }
+
   fetchTeamPerformance(teamId) {
     console.log("fetchTeamPerformance:", teamId);
     var metadata = {
@@ -134,6 +141,37 @@ export class TeamsComponent implements OnInit, OnDestroy {
       err => {
         console.log("Error occured.")
       };
+  }
+
+  fetchTeamShortHistory(teamId, gameDate) {
+    var metadata = {
+      "table": "vPerformanceMA",
+      "where": [JSON.stringify([
+        { "teamId = ": teamId }, 
+        { "season = ": '2022-2023' },
+        { "gameDate > ": gameDate },
+        { "gameDate < ": this.dayAddition(gameDate, 10) }
+      ])],
+      "order": "row_num desc"
+    };
+    console.log("fTSJH.where:", metadata.where);
+    /*
+    this.storeService.selectAll(metadata)
+      .subscribe(response => {
+        if (response) {
+          return response;
+        }
+      }),
+      err => {
+        console.log("Error occured.")
+      };*/
+  }
+  
+  dayAddition(date, days) {
+    var from = new Date(date);
+    from.setDate(from.getDate() + days);
+
+    return from.toISOString().slice(0, 10);
   }
 
   ngOnDestroy() {

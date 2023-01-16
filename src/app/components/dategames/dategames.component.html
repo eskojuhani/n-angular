@@ -72,28 +72,34 @@
     <div class="row row-centered">
       <div class="col-md-6">
         <div *ngIf="homePerformance" class="entity-list">
-            <div *ngFor="let item of homePerformance" class="entity-box">
+            <div *ngFor="let item of homePerformance" class="entity-box"
+            [ngClass]="item.outcome === 'W' && item.oppoId === selectedGame.awayId ? 'outcome-win' :
+            item.outcome === 'L' && item.oppoId === selectedGame.awayId ? 'outcome-lost' : 'outcome'">
               <div [innerHtml]="item.gameDate"></div>
               <div class="opponent-name" [innerHtml]="item.oppo"></div>
               <div [innerHtml]="item.location"></div>
               <div [innerHtml]="item.performance"></div>
               <div [innerHtml]="item.gameMovingAvg3"></div>
               <div [innerHtml]="item.gameMovingAvg10"></div>
-              <div [innerHtml]="item.outcome"></div>
+              <div [innerHtml]="item.outcome"
+              [ngClass]="item.outcome === 'W'  ? 'outcome-win' : 'outcome-lost'"></div>
               <div [innerHtml]="item.finalScore"></div>
             </div>
         </div>
       </div>
       <div class="col-md-6">
         <div *ngIf="awayPerformance" class="entity-list">
-            <div *ngFor="let item of awayPerformance" class="entity-box">
+            <div *ngFor="let item of awayPerformance" class="entity-box"
+            [ngClass]="item.outcome === 'W' && item.oppoId === selectedGame.homeId ? 'outcome-win' :
+            item.outcome === 'L' && item.oppoId === selectedGame.homeId ? 'outcome-lost' : 'outcome'">
               <div [innerHtml]="item.gameDate"></div>
               <div class="opponent-name" [innerHtml]="item.oppo"></div>
               <div [innerHtml]="item.location"></div>
               <div [innerHtml]="item.performance"></div>
               <div [innerHtml]="item.gameMovingAvg3"></div>
               <div [innerHtml]="item.gameMovingAvg10"></div>
-              <div [innerHtml]="item.outcome"></div>
+              <div [innerHtml]="item.outcome"
+              [ngClass]="item.outcome === 'W'  ? 'outcome-win' : 'outcome-lost'"></div>
               <div [innerHtml]="item.finalScore"></div>
             </div>
         </div>
