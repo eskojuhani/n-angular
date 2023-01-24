@@ -21,20 +21,27 @@
         <div class="row row-centered">
           <div class="col-md-12">
             <div *ngIf="nextScheduledGames" class="entity-list">
-                <div *ngFor="let item of nextScheduledGames" class="entity-box">
+                <div (mouseenter)="onMouseEnter(item)"  *ngFor="let item of nextScheduledGames" class="entity-box">
                   <a href="/dategames/{{item.gameDate}}"><span [innerHtml]="item.gameDate" class="entity-item"></span></a>
                   <a href="/teams/{{item.oppoId}}"><span class="opponent-name" [innerHtml]="item.oppoTeamName" class="entity-item"></span></a>
                   <span [innerHtml]="item.oppoTeamDivision"class="entity-item"></span>
                   <span [innerHtml]="item.oppoTeamConference"class="entity-item"></span>
                   <span [innerHtml]="item.location" class="entity-item"></span>
+                  <div *ngIf="item.history"  class="history-row">
+                    <span class="history-item" *ngFor="let item of item.history"
+                    [ngClass]="item.outcome === 'W' ? 'outcome-win' : 'outcome-lost'">
+                      <span [innerHtml]="item.oppoId"></span>
+                      <span style="padding:2px" [innerHtml]="item.finalScore"></span>
+                    </span>
+                  </div>  
                 </div>
-            </div>
+              </div>
           </div>
         </div>
         <div class="row row-centered">
           <div class="col-md-12">
             <div *ngIf="homePerformance" class="entity-list">
-                <div *ngFor="let item of homePerformance" class="entity-box"
+                <div (mouseenter)="onMouseEnter(item)"  *ngFor="let item of homePerformance" class="entity-box"
                     [ngClass]="item.outcome === 'W' && item.location === 'H' ? 'outcome-win location-home' :
                       item.outcome === 'W' && item.location === 'A' ? 'outcome-win location-away' :
                       item.location === 'H' ? 'outcome-lost location-home' : 'outcome-lost location-away'">
@@ -49,9 +56,12 @@
                     <span [innerHtml]="item.finalScore" class="entity-item"></span>
                     <span [innerHtml]="item.overtime ? 'OT' : ''" class="entity-item"></span>
                   </div>
-                  <div class="history-row">
-                    <span>{{ plusOne(item.performance) }}</span>
-                    <span>{{ fetchTeamShortHistory(item.oppoId, item.gameDate) }}</span>
+                  <div *ngIf="item.history"  class="history-row">
+                    <span class="history-item" *ngFor="let item of item.history"
+                    [ngClass]="item.outcome === 'W' ? 'outcome-win' : 'outcome-lost'">
+                      <span [innerHtml]="item.oppoId"></span>
+                      <span style="padding:2px" [innerHtml]="item.finalScore"></span>
+                    </span>
                   </div>
                 </div>
             </div>

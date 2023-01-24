@@ -19,6 +19,10 @@ export class DateGamesComponent implements OnInit, OnDestroy {
   chatMessages = [];
   private routeSub: Subscription;
 
+  onMouseEnter(game) {
+    console.log("mouse enter:", game);
+  }
+
   title = 'NHL Schedules';
   //public scheduledGames: Observable<any[]>;
   scheduledGames = new Array<any>();

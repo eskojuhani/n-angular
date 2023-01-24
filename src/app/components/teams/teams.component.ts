@@ -17,8 +17,6 @@ import { memo } from './memo';
   styleUrls: ['./teams.component.css']
 })
 
-
-
 export class TeamsComponent implements OnInit, OnDestroy {
 
   //public teams: Observable<any[]>;
@@ -31,6 +29,10 @@ export class TeamsComponent implements OnInit, OnDestroy {
   private routeSub: Subscription;
   count = 0;
   
+  onMouseEnter(game) {
+    this.fetchTeamShortHistory(game)
+  }
+
   plusOne = memo((count: number) => count + 1);
 
   constructor(
@@ -143,28 +145,32 @@ export class TeamsComponent implements OnInit, OnDestroy {
       };
   }
 
-  fetchTeamShortHistory(teamId, gameDate) {
+  fetchTeamShortHistory(game) {
+    if (game.history)
+      return;
+
     var metadata = {
       "table": "vPerformanceMA",
       "where": [JSON.stringify([
-        { "teamId = ": teamId }, 
+        { "teamId = ": game.oppoId }, 
         { "season = ": '2022-2023' },
-        { "gameDate > ": gameDate },
-        { "gameDate < ": this.dayAddition(gameDate, 10) }
+        { "gameDate < ": game.gameDate },
+        { "gameDate > ": this.dayAddition(game.gameDate, -14) }
       ])],
       "order": "row_num desc"
     };
-    console.log("fTSJH.where:", metadata.where);
-    /*
+    //console.log("fTSJH.where:", metadata.where);
+    
     this.storeService.selectAll(metadata)
       .subscribe(response => {
         if (response) {
-          return response;
+          console.log(response);
+          //game.history = response.reverse();
         }
       }),
       err => {
         console.log("Error occured.")
-      };*/
+      };
   }
   
   dayAddition(date, days) {

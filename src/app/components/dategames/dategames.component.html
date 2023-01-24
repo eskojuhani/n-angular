@@ -14,7 +14,7 @@
     </div>
     <div class="row row-centered">
       <div class="col-md-12">
-        <div class="entity-box" *ngFor="let game of scheduledGames " (click)="gameSelected(game)">
+        <div (mouseenter)="onMouseEnter(game)" class="entity-box" *ngFor="let game of scheduledGames " (click)="gameSelected(game)">
           <div class="field-date" [innerHtml]="game.gameDate | date:'yyyy-MM-dd'"></div>
           <div class="field-name" [innerHtml]="game.homeTeamName"></div>
           <div class="field-name" [innerHtml]="'vs'"></div>
@@ -118,3 +118,4 @@
   </div>
 -->
 </div>
+

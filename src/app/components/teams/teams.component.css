@@ -67,8 +67,13 @@
     opacity: 1;
 }
 .entity-box .history-row {
-  font-size: 8px;
+  font-size: 11px;
   padding-top: 4px;
+}
+.history-item {
+  padding-left: 3px;
+  padding-right: 3px;
+  margin: 2px;
 }
 .entity-item {
   padding-right: 1em;
@@ -85,6 +90,10 @@
 }
 .outcome-win {
   background-color: #b9dca0;
+}
+.history-item.outcome-lost {
+  color: white;
+  background-color: #e70624;
 }
 .entity-list {
     border: 1px solid #fefefe;
