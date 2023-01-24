@@ -30,7 +30,8 @@ export class TeamsComponent implements OnInit, OnDestroy {
   count = 0;
   
   onMouseEnter(game) {
-    this.fetchTeamShortHistory(game)
+    console.log("onMouseEnter:", game);
+    this.fetchTeamShortHistory(game);
   }
 
   plusOne = memo((count: number) => count + 1);
