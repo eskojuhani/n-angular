@@ -30,7 +30,7 @@ export class TeamsComponent implements OnInit, OnDestroy {
   count = 0;
   
   onMouseEnter(game) {
-    console.log("onMouseEnter:", game);
+    //console.log("onMouseEnter:", game);
     this.fetchTeamShortHistory(game);
   }
 
@@ -165,8 +165,8 @@ export class TeamsComponent implements OnInit, OnDestroy {
     this.storeService.selectAll(metadata)
       .subscribe(response => {
         if (response) {
-          console.log(response);
-          //game.history = response.reverse();
+          //console.log(response);
+          game.history = response.reverse();
         }
       }),
       err => {
