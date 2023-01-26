@@ -57,11 +57,16 @@
                     <span [innerHtml]="item.overtime ? 'OT' : ''" class="entity-item"></span>
                   </div>
                   <div *ngIf="item.history"  class="history-row">
-                    <span class="history-item" *ngFor="let item of item.history; index as index"
-                    [ngClass]="item.outcome === 'W' ? item.overtime ? 'outcome-ot-win' : 'outcome-win' : item.overtime ? 'outcome-ot-lost': 'outcome-lost'">
-                      <span [innerHtml]="item.oppoId"></span>
-                      <span style="padding:2px" [innerHtml]="item.finalScore"></span>
-                      <span *ngIf="index > 0" style="padding:2px" [innerHtml]="daysBetween(item.gameDate, item.history[index-1])"></span>
+                    <span class="history-item" *ngFor="let element of item.history; index as index"
+                    [ngClass]="element.outcome === 'W' ? element.overtime ? 'outcome-ot-win' : 'outcome-win' : element.overtime ? 'outcome-ot-lost': 'outcome-lost'">
+                      <span *ngIf="index > 0" style="padding:2px">
+                        <span class="history-day-between" *ngFor="let _ of [].constructor(daysBetween(element.gameDate, item.history[index - 1].gameDate))">*</span>
+                      </span>
+                      <span [innerHtml]="element.oppoId"></span>
+                      <span style="padding:2px" [innerHtml]="element.finalScore"></span>
+                    </span>
+                    <span class="prev-game"  style="padding:2px">
+                      <span class="history-day-between" *ngFor="let _ of [].constructor(daysBetween(item.gameDate, item.history[item.history.length-1].gameDate))">*</span>
                     </span>
                   </div>
                 </div>

@@ -109,7 +109,6 @@ export class TeamsComponent implements OnInit, OnDestroy {
       };
   }
   fetchNextScheduledGame(teamId) {
-    console.log("fetchNextScheduledGame:", teamId);
     var metadata = {
       "table": "vScheduledGames",
       "where": [JSON.stringify([{ "teamId = ": teamId }])],
@@ -128,7 +127,6 @@ export class TeamsComponent implements OnInit, OnDestroy {
   }
 
   fetchTeamPerformance(teamId) {
-    console.log("fetchTeamPerformance:", teamId);
     var metadata = {
       "table": "vPerformanceMA",
       "where": [JSON.stringify([{ "teamId = ": teamId }, { "season = ": '2022-2023'}])],
@@ -175,7 +173,6 @@ export class TeamsComponent implements OnInit, OnDestroy {
   }
   
   daysBetween(date1, date2) {
-    console.log("daysBetween:", date1, date2);
     var from = new Date(date1);
     var to = new Date(date2);
     var timeDiff = Math.abs(from.getTime() - to.getTime());
