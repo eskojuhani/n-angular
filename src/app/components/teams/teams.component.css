@@ -91,9 +91,20 @@
 .outcome-win {
   background-color: #b9dca0;
 }
+.history-item.outcome-win {
+  background-color: #6de11b;
+}
+.history-item.outcome-ot-win {
+  color: yellow;
+  background-color: #a9bb9c;
+}
 .history-item.outcome-lost {
   color: white;
   background-color: #e70624;
+}
+.history-item.outcome-ot-lost {
+  color: white;
+  background-color: #eebdc3;
 }
 .entity-list {
     border: 1px solid #fefefe;

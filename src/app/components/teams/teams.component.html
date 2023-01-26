@@ -22,7 +22,7 @@
           <div class="col-md-12">
             <div *ngIf="nextScheduledGames" class="entity-list">
                 <div (mouseenter)="onMouseEnter(item)"  *ngFor="let item of nextScheduledGames" class="entity-box">
-                  <a href="/dategames/{{item.gameDate}}"><span [innerHtml]="item.gameDate" class="entity-item"></span></a>
+                  <a href="/dategames/{{item.gameDate}}/{{item.teamId}}"><span [innerHtml]="item.gameDate" class="entity-item"></span></a>
                   <a href="/teams/{{item.oppoId}}"><span class="opponent-name" [innerHtml]="item.oppoTeamName" class="entity-item"></span></a>
                   <span [innerHtml]="item.oppoTeamDivision"class="entity-item"></span>
                   <span [innerHtml]="item.oppoTeamConference"class="entity-item"></span>
@@ -46,7 +46,7 @@
                       item.outcome === 'W' && item.location === 'A' ? 'outcome-win location-away' :
                       item.location === 'H' ? 'outcome-lost location-home' : 'outcome-lost location-away'">
                   <div>
-                    <a href="/dategames/{{item.gameDate}}"><span [innerHtml]="item.gameDate" class="entity-item"></span></a>
+                    <a href="/dategames/{{item.gameDate}}/{{item.teamId}}"><span [innerHtml]="item.gameDate" class="entity-item"></span></a>
                     <a href="/teams/{{item.oppoId}}"><span class="opponent-name" [innerHtml]="item.oppo" class="entity-item"></span></a>
                     <span class="entity-item" [ngStyle]="{'border': getStyleForDivisionAndConverence(teamId, item.oppoId, item.finalScore)}">{{getDivisionAndConverence(item.oppoId)}}</span>
                     <span [innerHtml]="item.location" class="entity-item"></span>
@@ -57,10 +57,11 @@
                     <span [innerHtml]="item.overtime ? 'OT' : ''" class="entity-item"></span>
                   </div>
                   <div *ngIf="item.history"  class="history-row">
-                    <span class="history-item" *ngFor="let item of item.history"
-                    [ngClass]="item.outcome === 'W' ? 'outcome-win' : 'outcome-lost'">
+                    <span class="history-item" *ngFor="let item of item.history; index as index"
+                    [ngClass]="item.outcome === 'W' ? item.overtime ? 'outcome-ot-win' : 'outcome-win' : item.overtime ? 'outcome-ot-lost': 'outcome-lost'">
                       <span [innerHtml]="item.oppoId"></span>
                       <span style="padding:2px" [innerHtml]="item.finalScore"></span>
+                      <span *ngIf="index > 0" style="padding:2px" [innerHtml]="daysBetween(item.gameDate, item.history[index-1])"></span>
                     </span>
                   </div>
                 </div>

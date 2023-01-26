@@ -174,6 +174,15 @@ export class TeamsComponent implements OnInit, OnDestroy {
       };
   }
   
+  daysBetween(date1, date2) {
+    console.log("daysBetween:", date1, date2);
+    var from = new Date(date1);
+    var to = new Date(date2);
+    var timeDiff = Math.abs(from.getTime() - to.getTime());
+
+    return Math.ceil(timeDiff / (1000 * 3600 * 24));
+  }
+
   dayAddition(date, days) {
     var from = new Date(date);
     from.setDate(from.getDate() + days);

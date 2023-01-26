@@ -32,6 +32,7 @@ import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
       {path: 'teams/:id', component: TeamsComponent},
       {path: 'dategames', component: DateGamesComponent},
       {path: 'dategames/:id', component: DateGamesComponent},
+      {path: 'dategames/:id/:teamid', component: DateGamesComponent},
       {path: '', redirectTo: '/dategames', pathMatch: 'full'},
     ]),
     //SocketIoModule.forRoot(config)

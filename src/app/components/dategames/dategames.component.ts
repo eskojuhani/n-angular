@@ -37,6 +37,7 @@ export class DateGamesComponent implements OnInit, OnDestroy {
   public startDate;
   private username;
   private initialDate;
+  private initialTeamId;
 
   private $inputMessage = $('.inputMessage');
   private $usernameInput = $('.usernameInput');
@@ -104,9 +105,15 @@ export class DateGamesComponent implements OnInit, OnDestroy {
 
     this.storeService.selectAll(metadata)
       .subscribe(response => {
-        console.log(response)
+        console.log(this.initialTeamId, response)
         this.scheduledGames = _.uniq(response, "gamePk");
-        
+        if (this.initialTeamId) {
+          this.scheduledGames.forEach(item => {
+            if (item.homeId == this.initialTeamId || item.awayId == this.initialTeamId)
+              this.gameSelected(item);
+              //this.initialTeamId = "";
+          });
+        }
       }),
       err => {
         console.log("Error occured.")
@@ -161,6 +168,7 @@ export class DateGamesComponent implements OnInit, OnDestroy {
         selectedDate.setUTCHours(0, 0, 0, 0);
         this.initialDate = selectedDate
         console.log("initialDate is ", this.initialDate)
+        this.initialTeamId = params['teamid'];
       }
       else {
         let selectedDate = new Date();
