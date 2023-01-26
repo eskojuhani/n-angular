@@ -2,7 +2,9 @@
     float: left;
     width: 50%;
 }
-
+a, a:visited, a:hover, a:active {
+  color: inherit;
+}
 .entity-section {
     padding: 20px 10px;
     position: relative;

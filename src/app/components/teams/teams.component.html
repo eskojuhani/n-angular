@@ -28,10 +28,16 @@
                   <span [innerHtml]="item.oppoTeamConference"class="entity-item"></span>
                   <span [innerHtml]="item.location" class="entity-item"></span>
                   <div *ngIf="item.history"  class="history-row">
-                    <span class="history-item" *ngFor="let item of item.history"
-                    [ngClass]="item.outcome === 'W' ? 'outcome-win' : 'outcome-lost'">
-                      <span [innerHtml]="item.oppoId"></span>
-                      <span style="padding:2px" [innerHtml]="item.finalScore"></span>
+                    <span class="history-item" *ngFor="let element of item.history; index as index"
+                    [ngClass]="element.outcome === 'W' ? element.overtime ? 'outcome-ot-win' : 'outcome-win' : element.overtime ? 'outcome-ot-lost': 'outcome-lost'">
+                      <span *ngIf="index > 0" style="padding:2px">
+                        <span class="history-day-between" *ngFor="let _ of [].constructor(daysBetween(element.gameDate, item.history[index - 1].gameDate))">*</span>
+                      </span>
+                      <a href="/dategames/{{element.gameDate}}/{{element.oppoId}}"><span [innerHtml]="element.oppoId"></span></a> 
+                      <span style="padding:2px" [innerHtml]="element.finalScore"></span>
+                    </span>
+                    <span class="prev-game"  style="padding:2px">
+                      <span class="history-day-between" *ngFor="let _ of [].constructor(daysBetween(item.gameDate, item.history[item.history.length-1].gameDate))">*</span>
                     </span>
                   </div>  
                 </div>
@@ -62,7 +68,7 @@
                       <span *ngIf="index > 0" style="padding:2px">
                         <span class="history-day-between" *ngFor="let _ of [].constructor(daysBetween(element.gameDate, item.history[index - 1].gameDate))">*</span>
                       </span>
-                      <span [innerHtml]="element.oppoId"></span>
+                      <a href="/dategames/{{element.gameDate}}/{{element.oppoId}}"><span [innerHtml]="element.oppoId"></span></a>
                       <span style="padding:2px" [innerHtml]="element.finalScore"></span>
                     </span>
                     <span class="prev-game"  style="padding:2px">
