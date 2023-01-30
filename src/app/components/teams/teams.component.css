@@ -119,8 +119,12 @@ a, a:visited, a:hover, a:active {
   margin-left: 2px;
   margin-right: 2px;
   padding: 2px;
-  background-color: rgb(245, 234, 185);
-  color: black;
+}
+.next-game-away {
+  color: blue;
+}
+.next-game-home {
+  color: red;
 }
 .entity-list {
     border: 1px solid #fefefe;
