@@ -88,10 +88,16 @@ a, a:visited, a:hover, a:active {
   float: right;
 }
 .outcome-lost {
-  background-color: #f3b8ba;
+  background-color: #f78e9c;
+}
+.outcome-ot-lost {
+  background-color: #eebdc3;
 }
 .outcome-win {
   background-color: #b9dca0;
+}
+.outcome-ot-win {
+  background-color: #a9bb9c;
 }
 .history-item.outcome-win {
   background-color: #6de11b;

@@ -50,9 +50,14 @@
           <div class="col-md-12">
             <div *ngIf="homePerformance" class="entity-list">
                 <div (mouseenter)="onMouseEnter(item)"  *ngFor="let item of homePerformance" class="entity-box"
-                    [ngClass]="item.outcome === 'W' && item.location === 'H' ? 'outcome-win location-home' :
+                    [ngClass]="
+                      item.outcome === 'W' && item.location === 'H' && item.overtime ? 'outcome-ot-win location-home' :
+                      item.outcome === 'W' && item.location === 'H' ? 'outcome-win location-home' :
+                      item.outcome === 'W' && item.location === 'A' && item.overtime ? 'outcome-ot-win location-away' :
                       item.outcome === 'W' && item.location === 'A' ? 'outcome-win location-away' :
-                      item.location === 'H' ? 'outcome-lost location-home' : 'outcome-lost location-away'">
+                      item.location === 'H' && item.overtime ? 'outcome-ot-lost location-home' : 
+                      item.location === 'H'  ? 'outcome-lost location-home' : 
+                      item.overtime ? 'outcome-ot-lost location-away' : 'outcome-lost location-away'">
                   <div>
                     <a href="/dategames/{{item.gameDate}}/{{item.teamId}}"><span [innerHtml]="item.gameDate" class="entity-item"></span></a>
                     <a href="/teams/{{item.oppoId}}"><span class="opponent-name" [innerHtml]="item.oppo" class="entity-item"></span></a>
