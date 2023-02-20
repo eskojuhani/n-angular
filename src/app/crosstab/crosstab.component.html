@@ -12,7 +12,7 @@
       <span class="col-md-12">
         <span [innerHtml]="item.TeamId" class="team-id"></span>
         <span *ngFor="let teamId of teamIds" class="team-box">
-          <span [innerHtml]="item[teamId]" class="crosstab-value"></span>
+          <span [innerHtml]="crossPercentage(item[teamId])" class="crosstab-value" [ngClass]="crossPercentageCSS(item[teamId])"></span>
         </span>
       </span>
     </div>

@@ -45,4 +45,31 @@ export class CrosstabComponent implements OnInit {
         console.log("Error occured.")
       };
   }
+
+  crossPercentage(cross_value) {
+    if (cross_value == null)
+      return "";
+
+    var cross_array = cross_value.split(",");
+    var sum = cross_array.reduce((a, b) => a + parseInt(b), 0);
+
+    return Math.trunc((100 * sum) / cross_array.length);
+  }
+
+  crossPercentageCSS(cross_value) {
+    if (cross_value == null)
+      return "";
+
+    var cross_array = cross_value.split(",");
+    var sum = cross_array.reduce((a, b) => a + parseInt(b), 0);
+
+    var perc = Math.trunc((100 * sum) / cross_array.length);
+    if (perc == 100)
+      return "cv-100"
+    else if (perc == 0)
+      return "cv-0"
+    else
+      return "cv-50";
+
+  }
 }

@@ -68,6 +68,15 @@ color: inherit;
 .team-box:nth-child(5n), .row:nth-child(5n) {
   background-color: lightgray;
 }
+.cv-100 {
+  background-color: rgb(176, 237, 176);
+}
+.cv-50 {
+  background-color: rgb(243, 244, 189);
+}
+.cv-0 {
+  background-color: rgb(249, 183, 183);
+}
 .team-id, .crosstab-value {
   width: 3em;
   padding-left: 1px;
