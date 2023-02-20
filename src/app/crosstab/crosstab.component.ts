@@ -31,7 +31,7 @@ export class CrosstabComponent implements OnInit {
 
   fetchData() {
     var metadata = {
-      "table": "vcrosstab"
+      "table": "vCrossTab"
     };
 
 
