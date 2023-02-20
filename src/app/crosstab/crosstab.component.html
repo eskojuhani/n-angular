@@ -1,19 +1,20 @@
 <div *ngIf="crosstab" class="entity-section entity-section-light">
   <div class="container">
-    <div class="row ">
-      <div class="col-md-12">
-        <div class="event-box">
-          <span class="team-id">&nbsp;</span>
-          <span *ngFor="let teamId of teamIds" class="team-box">
-            <span [innerHtml]="teamId" class="team-id"></span>
-          </span>
-        </div>
-        <div *ngFor="let item of crosstab" class="event-box">
-          <span [innerHtml]="item.TeamId" class="team-id"></span>
-          <span *ngFor="let teamId of teamIds" class="team-box">
-            <span [innerHtml]="item[teamId]" class="crosstab-value"></span>
-          </span>
-      </div>
+    <div class="row">
+      <span class="col-md-12">
+        <span class="team-id">&nbsp;</span>
+        <span *ngFor="let teamId of teamIds" class="team-box">
+          <span [innerHtml]="teamId" class="team-id"></span>
+        </span>
+      </span>
+    </div>
+    <div *ngFor="let item of crosstab" class="row">
+      <span class="col-md-12">
+        <span [innerHtml]="item.TeamId" class="team-id"></span>
+        <span *ngFor="let teamId of teamIds" class="team-box">
+          <span [innerHtml]="item[teamId]" class="crosstab-value"></span>
+        </span>
+      </span>
     </div>
   </div>
 </div>

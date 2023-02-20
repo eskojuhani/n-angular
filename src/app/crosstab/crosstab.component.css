@@ -63,13 +63,19 @@ color: inherit;
 }
 .team-box {
   display: inherit;
+  text-align: right;
+}
+.team-box:nth-child(5n), .row:nth-child(5n) {
+  background-color: lightgray;
 }
 .team-id, .crosstab-value {
   width: 3em;
   padding-left: 1px;
   padding-right: 1px;
   display: inline-flex;
+  font-size: 10px;
 }
+
 .entity-item {
 padding-right: 1em;
 padding-left: 1em;
