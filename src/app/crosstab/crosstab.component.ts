@@ -14,9 +14,12 @@ import * as $ from 'jquery';
   styleUrls: ['./crosstab.component.css']
 })
 export class CrosstabComponent implements OnInit {
-
   crosstab = new Array<any>();
   teamIds = new Array<string>('ANA','ARI','BOS','BUF','CAR','CBJ','CGY','CHI','COL','DAL','DET','EDM','FLA','LAK','MIN','MTL','NJD','NSH','NYI','NYR','OTT','PHI','PIT','SEA','SJS','STL','TBL','TOR','VAN','VGK','WPG','WSH');
+  dAtlantic = new Array<string>('BOS','BUF','DET','FLA','MTL','OTT','TBL','TOR');
+  dMetro = new Array<string>('CAR','CBJ','NJD','NYI','NYR','PHI','PIT','WSH');
+  dCentral = new Array<string>('ARI','CHI','COL','DAL','MIN','NSH','STL','WPG');
+  dPacific = new Array<string>('ANA','CGY','EDM','LAK','SEA','SJS','VAN','VGK');
   constructor(
     private app: AppComponent,
     private route: ActivatedRoute,
@@ -24,12 +27,18 @@ export class CrosstabComponent implements OnInit {
   ) {
 
   }
+  selectedDivision = "";
 
+  setDivision(e) {
+    console.log("this.onChangePrinter:", e.target.value, e);
+  }
   ngOnInit() {
+    console.log("ngOnInit")
     this.fetchData();
   }
 
   fetchData() {
+    console.log("fetchData")
     var metadata = {
       "table": "vCrossTab"
     };
@@ -70,6 +79,38 @@ export class CrosstabComponent implements OnInit {
       return "cv-0"
     else
       return "cv-50";
+  }
 
+  isSelected(teamId, cross_value = -1) {
+    var cpCss = "";
+    if (cross_value !== -1) 
+      cpCss = this.crossPercentageCSS(cross_value);
+    
+    if (this.selectedDivision === "")
+      return cpCss + " row-visible"
+
+    var contains = false
+    switch (this.selectedDivision) {
+      case 'M':
+        contains = this.dMetro.includes(teamId);
+        break;
+      case 'A':
+        contains = this.dAtlantic.includes(teamId);
+        break;
+      case 'C':
+        contains = this.dCentral.includes(teamId);
+        break;
+      case 'P':
+        contains = this.dPacific.includes(teamId);
+        break;
+                
+      default:
+        break;
+    }
+
+    if (contains)
+      return cpCss + " row-visible"
+    else
+      return cpCss + " row-no-show"
   }
 }

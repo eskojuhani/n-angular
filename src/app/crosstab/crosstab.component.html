@@ -1,18 +1,30 @@
+<div class="container">
+  <input type="radio" id="d-all" name="division" value="" [(ngModel)]="selectedDivision" (change)="setDivision($event)"/>
+  <label for="d-metro">All</label>
+  <input type="radio" id="d-metro" name="division" value="M" [(ngModel)]="selectedDivision" (change)="setDivision($event)"/>
+  <label for="d-metro">Metro</label>
+  <input type="radio" id="d-atlantic" name="division" value="A" [(ngModel)]="selectedDivision" (change)="setDivision($event)"/>
+  <label for="d-atlantic">Atlantic</label>
+  <input type="radio" id="d-central" name="division" value="C" [(ngModel)]="selectedDivision" (change)="setDivision($event)"/>
+  <label for="d-atlantic">Central</label>
+  <input type="radio" id="d-pacific" name="division" value="P" [(ngModel)]="selectedDivision" (change)="setDivision($event)"/>
+  <label for="d-atlantic">Pacific</label>
+</div>
 <div *ngIf="crosstab" class="entity-section entity-section-light">
   <div class="container">
     <div class="row">
       <span class="col-md-12">
         <span class="team-id">&nbsp;</span>
-        <span *ngFor="let teamId of teamIds" class="team-box">
+        <span *ngFor="let teamId of teamIds" class="team-box" [ngClass]="isSelected(teamId)">
           <span [innerHtml]="teamId" class="team-id"></span>
         </span>
       </span>
     </div>
     <div *ngFor="let item of crosstab" class="row">
-      <span class="col-md-12">
+      <span class="col-md-12"  [ngClass]="isSelected(item.TeamId)">
         <span [innerHtml]="item.TeamId" class="team-id"></span>
         <span *ngFor="let teamId of teamIds" class="team-box">
-          <span [innerHtml]="crossPercentage(item[teamId])" class="crosstab-value" [ngClass]="crossPercentageCSS(item[teamId])"></span>
+          <span [innerHtml]="crossPercentage(item[teamId])" class="crosstab-value" [ngClass]="isSelected(teamId, item[teamId])"></span>
         </span>
       </span>
     </div>

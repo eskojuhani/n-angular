@@ -15,6 +15,8 @@ import { TokenInterceptor } from './services/token-interceptor';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { CrosstabComponent } from './crosstab/crosstab.component';
 
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 //const config: SocketIoConfig = { url: 'https://nhl-chat.herokuapp.com/', options: { } }
 //const config: SocketIoConfig = { url: 'http://localhost:8088/', options: { } }
 
@@ -28,6 +30,8 @@ import { CrosstabComponent } from './crosstab/crosstab.component';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot([
       {path: 'crosstab', component: CrosstabComponent},
