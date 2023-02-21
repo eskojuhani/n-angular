@@ -1,14 +1,18 @@
 <div class="container">
   <input type="radio" id="d-all" name="division" value="" [(ngModel)]="selectedDivision" (change)="setDivision($event)"/>
-  <label for="d-metro">All</label>
+  <label for="d-all">All</label>
+  <input type="radio" id="d-eastern" name="division" value="E" [(ngModel)]="selectedDivision" (change)="setDivision($event)"/>
+  <label for="d-eastern">Eastern</label>
+  <input type="radio" id="d-western" name="division" value="W" [(ngModel)]="selectedDivision" (change)="setDivision($event)"/>
+  <label for="d-werstern">Western</label>
   <input type="radio" id="d-metro" name="division" value="M" [(ngModel)]="selectedDivision" (change)="setDivision($event)"/>
   <label for="d-metro">Metro</label>
   <input type="radio" id="d-atlantic" name="division" value="A" [(ngModel)]="selectedDivision" (change)="setDivision($event)"/>
   <label for="d-atlantic">Atlantic</label>
   <input type="radio" id="d-central" name="division" value="C" [(ngModel)]="selectedDivision" (change)="setDivision($event)"/>
-  <label for="d-atlantic">Central</label>
+  <label for="d-central">Central</label>
   <input type="radio" id="d-pacific" name="division" value="P" [(ngModel)]="selectedDivision" (change)="setDivision($event)"/>
-  <label for="d-atlantic">Pacific</label>
+  <label for="d-pacific">Pacific</label>
 </div>
 <div *ngIf="crosstab" class="entity-section entity-section-light">
   <div class="container">

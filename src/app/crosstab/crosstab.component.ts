@@ -91,6 +91,12 @@ export class CrosstabComponent implements OnInit {
 
     var contains = false
     switch (this.selectedDivision) {
+      case 'E':
+        contains = this.dMetro.includes(teamId) || this.dAtlantic.includes(teamId);
+        break;
+      case 'W':
+        contains = this.dCentral.includes(teamId) || this.dPacific.includes(teamId);
+        break;
       case 'M':
         contains = this.dMetro.includes(teamId);
         break;
