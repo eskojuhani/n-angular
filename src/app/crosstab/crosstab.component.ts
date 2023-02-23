@@ -28,9 +28,11 @@ export class CrosstabComponent implements OnInit {
 
   }
   selectedDivision = "";
+  selectedHome = "Atlantic";
+  selectedAway = "Metro";
 
   setDivision(e) {
-    console.log("this.onChangePrinter:", e.target.value, e);
+    console.log("this.setDivision:", e.target.value, e);
   }
   ngOnInit() {
     console.log("ngOnInit")
@@ -48,7 +50,6 @@ export class CrosstabComponent implements OnInit {
       .subscribe(response => {
         if (response)
           this.crosstab = response;
-          console.log("data:", response);
       }),
       err => {
         console.log("Error occured.")
@@ -81,7 +82,7 @@ export class CrosstabComponent implements OnInit {
       return "cv-50";
   }
 
-  isSelected(teamId, cross_value = -1) {
+  isSelected(teamId, cross_value = -1, location) {
     var cpCss = "";
     if (cross_value !== -1) 
       cpCss = this.crossPercentageCSS(cross_value);
@@ -109,7 +110,13 @@ export class CrosstabComponent implements OnInit {
       case 'P':
         contains = this.dPacific.includes(teamId);
         break;
-                
+      case 'X':
+        if (location === 'H')
+          contains = this.locationContains(teamId, this.selectedHome);
+        else 
+          contains = this.locationContains(teamId, this.selectedAway);
+        break;
+                  
       default:
         break;
     }
@@ -119,4 +126,31 @@ export class CrosstabComponent implements OnInit {
     else
       return cpCss + " row-no-show"
   }
+
+  locationContains(teamId, division) {
+    var contains = false
+    switch (division) {
+      case 'Eastern':
+        contains = this.dMetro.includes(teamId) || this.dAtlantic.includes(teamId);
+        break;
+      case 'Western':
+        contains = this.dCentral.includes(teamId) || this.dPacific.includes(teamId);
+        break;
+      case 'Metro':
+        contains = this.dMetro.includes(teamId);
+        break;
+      case 'Atlantic':
+        contains = this.dAtlantic.includes(teamId);
+        break;
+      case 'Central':
+        contains = this.dCentral.includes(teamId);
+        break;
+      case 'Pacific':
+        contains = this.dPacific.includes(teamId);
+        break;                  
+      default:
+        break;
+    }
+    return contains;
+  } 
 }
