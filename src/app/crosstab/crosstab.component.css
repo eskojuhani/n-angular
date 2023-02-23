@@ -61,6 +61,9 @@ color: inherit;
   cursor: pointer;
   font-size: 14px;
 }
+.row {
+  white-space: nowrap;
+}
 .row-visible {
   display: inline-flex;
 }
