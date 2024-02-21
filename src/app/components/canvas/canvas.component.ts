@@ -1,4 +1,4 @@
-import { Component, Input, ElementRef, AfterViewInit, OnInit, ViewChild, OnChanges, SimpleChanges, SimpleChange } from '@angular/core';
+import { Component, Input, ElementRef, AfterViewInit, OnInit, ViewChild, ChangeDetectorRef, SimpleChanges, SimpleChange } from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -34,9 +34,13 @@ export class CanvasComponent implements OnInit, AfterViewInit {
   private awayDayStats: any = [];
 
   clickedGameInfo = "n/a";
+  @Input() separatedHA: Number;
 
-  constructor() { }
-  ngOnInit() { this.init(); this.initImage(); }
+  constructor(private cdr: ChangeDetectorRef) { }
+  ngOnInit() { 
+    this.init(); 
+    this.initImage(); 
+  }
 /*
   sun = new Image();
   moon = new Image();
@@ -99,7 +103,19 @@ export class CanvasComponent implements OnInit, AfterViewInit {
     }
     */
   }
-
+  onSeparatedHA() {
+    if (this.game) {
+      this.drawHeader(this.game);
+    }
+    if (this.home) {
+      this.homeGames = [];
+      this.drawGraphs(this.home, '#ff0000', 1);
+    }
+    if (this.away) {
+      this.awayGames = [];
+      this.drawGraphs(this.away, '#0000ff', 0);
+    }
+  }
   onResize(event) {
     console.log("onResize:", event.target.innerWidth);
     this.initCanvas(event.target.innerWidth * 0.9, event.target.innerHeight * 0.7);
@@ -302,7 +318,7 @@ export class CanvasComponent implements OnInit, AfterViewInit {
       return;
     }
 
-    let data = inData; //.slice(0, 80)
+    let data = inData.filter((element) => { return this.separatedHA ? element.location == (isHome == 1 ? "H" : "A") : true});
     let min_row_num = data[data.length - 1].row_num - 1;
     let row_fix = inData.length - data.length;
     

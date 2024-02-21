@@ -1,3 +1,6 @@
+<div>
+  <input type="checkbox" [(ngModel)]="separatedHA" (change)="onSeparatedHA()">{{separatedHA ? "separated H/A" : "combined H/A"}}
+</div>
 <canvas class="canvas" width="800" height="600" #canvas></canvas>
 <div *ngIf="clickedGameInfo">
   <span>{{clickedGameInfo}}</span>
