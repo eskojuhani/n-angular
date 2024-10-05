@@ -15,10 +15,10 @@ import * as $ from 'jquery';
 })
 export class CrosstabComponent implements OnInit {
   crosstab = new Array<any>();
-  teamIds = new Array<string>('ANA','ARI','BOS','BUF','CAR','CBJ','CGY','CHI','COL','DAL','DET','EDM','FLA','LAK','MIN','MTL','NJD','NSH','NYI','NYR','OTT','PHI','PIT','SEA','SJS','STL','TBL','TOR','VAN','VGK','WPG','WSH');
+  teamIds = new Array<string>('ANA','BOS','BUF','CAR','CBJ','CGY','CHI','COL','DAL','DET','EDM','FLA','LAK','MIN','MTL','NJD','NSH','NYI','NYR','OTT','PHI','PIT','SEA','SJS','STL','TBL','TOR','UTA','VAN','VGK','WPG','WSH');
   dAtlantic = new Array<string>('BOS','BUF','DET','FLA','MTL','OTT','TBL','TOR');
   dMetro = new Array<string>('CAR','CBJ','NJD','NYI','NYR','PHI','PIT','WSH');
-  dCentral = new Array<string>('ARI','CHI','COL','DAL','MIN','NSH','STL','WPG');
+  dCentral = new Array<string>('CHI','COL','DAL','MIN','NSH','STL','UTA','WPG');
   dPacific = new Array<string>('ANA','CGY','EDM','LAK','SEA','SJS','VAN','VGK');
   constructor(
     private app: AppComponent,

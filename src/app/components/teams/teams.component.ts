@@ -129,7 +129,7 @@ export class TeamsComponent implements OnInit, OnDestroy {
   fetchTeamPerformance(teamId) {
     var metadata = {
       "table": "vPerformanceMA",
-      "where": [JSON.stringify([{ "teamId = ": teamId }, { "season = ": '2023-2024'}])],
+      "where": [JSON.stringify([{ "teamId = ": teamId }, { "season = ": '2024-2025'}])],
       "order": "row_num desc"
     };
 
@@ -152,7 +152,7 @@ export class TeamsComponent implements OnInit, OnDestroy {
       "table": "vPerformanceMA",
       "where": [JSON.stringify([
         { "teamId = ": game.oppoId }, 
-        { "season = ": '2023-2024' },
+        { "season = ": '2024-2025' },
         { "gameDate < ": game.gameDate },
         { "gameDate > ": this.dayAddition(game.gameDate, -14) }
       ])],
