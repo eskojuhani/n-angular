@@ -51,7 +51,7 @@ a, a:visited, a:hover, a:active {
 .entity-box {
     border: 1px solid #dedede;
     font-family: "Futura-pt", Helvetica, Arial, sans-serif;
-    height: 30px;
+    height: 50px;
     width: 80%;
     padding: 4px 4px;
     margin: 8px 4px;
@@ -77,6 +77,11 @@ a, a:visited, a:hover, a:active {
   padding-right: 3px;
   margin: 2px;
 }
+.entity-box .goalstats-row {
+  height: 18px;
+  font-size: 11px;
+  padding-top: 4px;
+}
 .entity-item {
   padding-right: 1em;
   padding-left: 1em;
@@ -86,6 +91,16 @@ a, a:visited, a:hover, a:active {
 }
 .location-away {
   float: right;
+}
+.puck-red {
+  height: 15px;
+  width: 15px;
+  background-image: url("/assets/puck-red.png");
+}
+.puck-green {
+  height: 15px;
+  width: 15px;
+  background-image: url("/assets/puck-green.png");
 }
 .outcome-lost {
   background-color: #f78e9c;
